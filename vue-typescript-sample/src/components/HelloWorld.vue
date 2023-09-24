@@ -1,19 +1,29 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h1>{{ fullName }}</h1>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { Options, Vue } from 'vue-class-component';
+export interface User {
+  firstName: string;
+  lastName: string;
+  age: number;
+}
 
 export default defineComponent({
   name: 'HelloWorld',
-  data() {
-    return {
-      msg: 'Hello TypeScript',
-    };
+  props: {
+    msg: { type: String as PropType<string> },
+    user: { type: Object as PropType<User>, required: true },
+  },
+  computed: {
+    fullName(): string {
+      return this.user.firstName + ' ' + this.user.lastName;
+    },
   },
 });
 </script>
