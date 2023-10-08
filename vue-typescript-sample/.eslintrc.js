@@ -29,6 +29,7 @@ module.exports = {
         // The core 'no-unused-vars' rules (in the eslint:recommeded ruleset)
         // does not work with type definitions
         'no-unused-vars': 'off',
+        'vue/no-multiple-template-root': 'off',
       },
     },
   ],
