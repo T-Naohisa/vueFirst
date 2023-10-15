@@ -19,7 +19,7 @@ export default defineComponent({
     };
   },
   methods: {
-    addTodo(newTextTodo: string) {
+    addTodoList(newTextTodo: string) {
       if (newTextTodo === '') {
         alert('文字を入力してください。');
         return;
@@ -40,7 +40,7 @@ export default defineComponent({
 <template>
   <dev>
     <h1>My ToDo App</h1>
-    <TodoAdd @delete-done="clearDoneTodos" @add-todo="addTodo" />
+    <TodoAdd @delete-done="clearDoneTodos" @add-todo="addTodoList" />
     <p v-if="todos.length === 0">ToDoがありません。</p>
     <ul v-else>
       <li v-for="(todo, index) in todos" :key="index">
