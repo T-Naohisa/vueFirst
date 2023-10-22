@@ -1,6 +1,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import MyButton from './basics/MyButton.vue';
 export default defineComponent({
+  components: {
+    MyButton,
+  },
   emits: ['delete-done', 'add-todo'],
   data() {
     return {
@@ -18,7 +22,7 @@ export default defineComponent({
 
 <template>
   <dev>
-    <input type="text" v-model="newTextTodo" /><button @click="todoAdd">追加</button
-    ><button @click="$emit('delete-done')">完了済みを削除する</button>
+    <input type="text" v-model="newTextTodo" /><MyButton @click="todoAdd">追加</MyButton
+    ><MyButton @click="$emit('delete-done')">完了済みを削除する</MyButton>
   </dev>
 </template>
