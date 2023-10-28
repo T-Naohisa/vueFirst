@@ -1,6 +1,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import MyButton from './basics/MyButton.vue';
+export interface Todos {
+  isDone: boolean;
+  text: string;
+}
+
 export default defineComponent({
   components: {
     MyButton,

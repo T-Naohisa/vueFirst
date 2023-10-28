@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import TodoAdd from './components/TodoAdd.vue';
+import TodoList from './components/todoList.vue';
 
 export interface Todos {
   isDone: boolean;
@@ -10,6 +11,7 @@ export interface Todos {
 export default defineComponent({
   components: {
     TodoAdd,
+    TodoList,
   },
   data() {
     return {
@@ -42,13 +44,7 @@ export default defineComponent({
     <h1>My ToDo App</h1>
     <TodoAdd @delete-done="clearDoneTodos" @add-todo="addTodoList" />
     <p v-if="todos.length === 0">ToDoがありません。</p>
-    <ul v-else>
-      <li v-for="(todo, index) in todos" :key="index">
-        <input type="checkbox" v-model="todo.isDone" /><span :class="{ 'todo-done': todo.isDone }">{{
-          todo.text
-        }}</span>
-      </li>
-    </ul>
+    <TodoList v-else :todos="todos" />
   </dev>
 </template>
 
