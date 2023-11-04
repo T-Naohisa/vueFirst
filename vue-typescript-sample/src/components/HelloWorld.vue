@@ -6,8 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { Options, Vue } from 'vue-class-component';
+import { defineComponent } from 'vue';
 export interface User {
   firstName: string;
   lastName: string;
@@ -16,9 +15,15 @@ export interface User {
 
 export default defineComponent({
   name: 'HelloWorld',
-  props: {
-    msg: { type: String as PropType<string> },
-    user: { type: Object as PropType<User>, required: true },
+  data() {
+    return {
+      msg: 'HelloWorld' as string,
+      user: {
+        firstName: 'vue' as string,
+        lastName: '太郎' as string,
+        age: 20 as number,
+      } as User,
+    };
   },
   computed: {
     fullName(): string {
