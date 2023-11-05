@@ -1,5 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { mapStores, mapActions } from 'pinia';
+import { useTodosStore } from './stores/todos';
 import TodoAdd from './components/TodoAdd.vue';
 import TodoList from './components/todoList.vue';
 
@@ -14,27 +16,24 @@ export default defineComponent({
     TodoAdd,
     TodoList,
   },
-  data() {
-    return {
-      todos: [] as Array<Todos>,
-      num: 0 as number,
-      str: '' as string,
-    };
+  computed: {
+    ...mapStores(useTodosStore),
   },
   methods: {
-    addTodoList(newTextTodo: string) {
+    ...mapActions(useTodosStore, ['addTodo', 'clearTodo']),
+    addNewTodo(newTextTodo: string) {
       if (newTextTodo === '') {
         alert('文字を入力してください。');
         return;
       }
-      this.todos.push({
+      this.addTodo({
         isDone: false,
         text: newTextTodo,
       });
     },
     clearDoneTodos() {
       // チェックボックスにチェックのないもののみ抽出して新しいtodoリストを作成する
-      this.todos = this.todos.filter((todo) => !todo.isDone);
+      this.clearTodo();
     },
   },
 });
@@ -42,9 +41,9 @@ export default defineComponent({
 
 <template>
   <dev>
-    <TodoAdd @delete-done="clearDoneTodos" @add-todo="addTodoList" />
-    <p v-if="todos.length === 0">ToDoがありません。</p>
-    <TodoList v-else :todos="todos" />
+    <TodoAdd @delete-done="clearDoneTodos" @add-todo="addNewTodo" />
+    <p v-if="todosStore.todos.length === 0">ToDoがありません。</p>
+    <TodoList v-else :todos="todosStore.todos" />
   </dev>
 </template>
 
