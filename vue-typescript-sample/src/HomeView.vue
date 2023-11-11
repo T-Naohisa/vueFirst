@@ -1,9 +1,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { mapStores, mapActions } from 'pinia';
-import { useTodosStore } from './stores/todos';
-import TodoAdd from './components/TodoAdd.vue';
-import TodoList from './components/todoList.vue';
+import { useTodosStore } from 'src/stores/todos';
+import TodoAdd from 'src/components/TodoAdd.vue';
+import TodoList from 'src/components/todoList.vue';
 
 export interface Todos {
   isDone: boolean;
