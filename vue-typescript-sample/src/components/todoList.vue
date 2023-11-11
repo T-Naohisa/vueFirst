@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { Todos } from './TodoAdd.vue';
-import MyButton from './basics/MyButton.vue';
+import { Todos } from 'src/components/TodoAdd.vue';
+import MyButton from 'src/components/basics/MyButton.vue';
 export default defineComponent({
   components: {
     MyButton,
